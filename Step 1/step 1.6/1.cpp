@@ -7,9 +7,11 @@ void sol1(int n,int arr[]){
 
     for (int i = 0; i < n; i++)
     {
-       mp[arr[i]]++;
+      //  mp[arr[i]]=mp[arr[i]]+1;
+      mp[arr[i]]++;
     }
     cout<<endl;
+
     for(auto i:mp){
         cout<<i.first<<" "<<i.second<<endl;
     }
