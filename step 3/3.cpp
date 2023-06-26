@@ -6,7 +6,7 @@ bool sol1(int arr[], int n){
     for (int i = 0; i < n; i++)
     {
  
-        if (arr[i]<arr[i-1])
+        if (arr[i]>arr[i+1])
         {
             return false;
         }
