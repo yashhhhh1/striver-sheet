@@ -13,8 +13,8 @@ void sol1(int arr[],int n){
             second_max=first_max;
             first_max=arr[i];
         }
-        else if(arr[i]<first_max){
-            second_max=second_max>arr[i]?second_max:arr[i];
+        else if(arr[i]<first_max && arr[i]>second_min){
+            second_max=arr[i];
         }   
 
         if (arr[i]<first_min)
@@ -22,9 +22,9 @@ void sol1(int arr[],int n){
             second_min=first_min;
             first_min=arr[i];
         }
-        else if (arr[i]>first_min)
+        else if (arr[i]>first_min && arr[i]<second_min)
         {
-            second_min=second_min<arr[i]?second_min:arr[i];
+            second_min=arr[i];
         }
        
         
