@@ -5,7 +5,7 @@ using namespace std;
 int sol1(int arr[], int n, int k){
 
    
-    int len=0;
+    int maxLen=0;
     
     for (int i = 0; i < n; i++)
     {
@@ -17,15 +17,15 @@ int sol1(int arr[], int n, int k){
              sum+=arr[k];
            }
            if (sum==k)
-                len= max(len,j-i+1);  
+                maxLen= max(maxLen,j-i+1);  
         }   
     }
-    return len;
+    return maxLen;
 }
 
 int sol2(int arr[], int n, int k){
    
-    int len=0;
+    int maxLen=0;
     
     for (int i = 0; i < n; i++)
     {   int sum=0;
@@ -34,13 +34,13 @@ int sol2(int arr[], int n, int k){
             sum+=arr[j];
 
             if (sum==k)
-                len= max(len,j-i+1);          
+                maxLen= max(maxLen,j-i+1);          
         }  
     }
-    return len;
+    return maxLen;
 }
 
-void sol3(int arr[], int n ,int sum ){
+int  sol3(int arr[], int n ,int sum ){
     map<int , int> presum;
     int cursum=0;
     int maxLen=0;
@@ -63,13 +63,40 @@ void sol3(int arr[], int n ,int sum ){
             maxLen=max(maxLen,len);
         }
 
-        if(presum.find(cursum) != presum.end()){
+        if(presum.find(cursum) == presum.end()){
             presum[cursum]=i;
         }
         
     }
-    cout<<maxLen<<" ";
+   return maxLen;
 
+}
+
+int sol4(int arr[], int n, int k){
+   
+    int maxLen=0;
+    int right=0,left=0;
+    int sum=arr[0];
+
+    while (right < n)
+    {
+        while (left <= right && sum > k )
+        {
+            sum-=arr[left];
+            left++;
+        }
+        if (sum == k)
+        {
+            maxLen = max(maxLen, right - left + 1); 
+        }       
+        
+        right++;
+        if (right<n)   sum +=arr[right];
+        
+        
+    }
+
+    return maxLen;
 }
 
 int main()
@@ -79,13 +106,18 @@ int main()
     int sum=10;
 
    
-    int ans=sol1(arr,n,sum);
-    cout<<"sol1 ans is : "<<ans<<" "<<endl;
+    int ans1=sol1(arr,n,sum);
+    cout<<"sol1 ans is : "<<ans1<<" "<<endl;
 
-    int a=sol2(arr,n,sum);
-    cout<<"sol2 ans is : "<<a<<" "<<endl;
+    int ans2=sol2(arr,n,sum);
+    cout<<"sol2 ans is : "<<ans2<<" "<<endl;
 
-    sol3(arr,n,sum);
-     return 0;
+    int ans3=sol3(arr,n,sum);
+    cout<<"sol3 ans is : "<<ans3<<" "<<endl;
+
+    int ans4 = sol4(arr,n,sum);
+    cout<<"sol4 ans is : "<<ans4<<" "<<endl;
+
+    return 0;
  }
 
