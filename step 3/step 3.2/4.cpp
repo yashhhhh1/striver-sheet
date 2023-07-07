@@ -62,8 +62,6 @@ void sol3(int arr[], int n){
     {
         sum=0;
     }
-    
-
    }
    
     cout<<maxi<<endl;
