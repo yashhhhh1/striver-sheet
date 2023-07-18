@@ -21,13 +21,38 @@ int sol1(vector<int> &ans, int k)
 
     return cnt;
 }
+int sol2(vector<int> &ans, int k)
+{
+
+    int n = ans.size();
+    int cnt = 0 ,presum = 0;
+    map<int, int>mpp;
+
+    mpp[0] = 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        presum += ans[i];
+
+
+        int remove = presum - k;
+
+        cnt += mpp[remove];
+
+        mpp[presum] += 1;
+    }
+    
+
+    return cnt;
+}
 
 int main()
 {
-    vector<int> arr = {3, 1, 2, 4};
-    int k = 6;
+    vector<int> arr = {3,-3,1,1,1};
+    int k = 3;
 
-    int cnt = sol1(arr, k);
+    // int cnt = sol1(arr, k);
+    int cnt = sol2(arr, k);
 
     cout << "the total subarray is :" << cnt;
     return 0;
